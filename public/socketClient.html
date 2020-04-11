@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Thai Mobility Socket.IO Client</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 13px Helvetica, Arial;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+
+        #disconnect-btn {
+            background: rgb(255, 67, 67)
+        }
+
+        #send-btn {
+            background: rgb(130, 255, 203)
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+
+        #messages {
+            margin-bottom: 150px
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="host" autocomplete="off" placeholder="Enter host here. Ex: 192.168.1.95:5030" /><button type="button"
+            id="connect-btn">Connect</button><br />
+        <input id="m" autocomplete="off" placeholder="Enter token here" /><button type="button"
+            id="disconnect-btn">Disconnect</button><br />
+        <!--<input id="l" autocomplete="off" placeholder="Enter language here" /><br />-->
+        <input id="message" autocomplete="off" placeholder="Enter socket message (used for game play only)" /><button
+            type="button" id="send-btn">Send</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $('#connect-btn').show();
+        $('#disconnect-btn').hide();
+        hideMessageField();
+
+        let socket = null;
+        let socketInstance = null;
+
+        $(function () {
+            $('#connect-btn').click(function () {
+                if (!$('#host').val()) {
+                    alert('Please input correct host')
+                }
+
+                socketInstance = io($('#host').val(), {
+                    query: {
+                        token: $('#m').val(),
+                        lang: $('#l').val()
+                    }
+                });
+
+                socket = socketInstance;
+
+                socket.on('connect', function (msg) {
+                    $('#messages').append($('<li>').text(`Connected at: ${new Date()}`));
+                    socket = socketInstance;
+                    $('#connect-btn').hide();
+                    $('#disconnect-btn').show();
+                    showMessageField();
+                    scrollToBottom();
+                });
+
+                socket.on('disconnect', function (msg) {
+                    $("#messages").empty();
+                    $('#messages').append($('<li>').text(`Disconnected at: ${new Date()}`));
+                    socket = null;
+                    $('#connect-btn').show();
+                    $('#disconnect-btn').hide();
+                    hideMessageField();
+                    scrollToBottom();
+                });
+
+                socket.on('error', (error) => {
+                    $('#messages').append($('<li>').text('Error: ' + error));
+                    socket = null;
+                    $('#connect-btn').show();
+                    $('#disconnect-btn').hide();
+                    hideMessageField();
+                    scrollToBottom();
+                });
+
+                socket.on('test', (data) => {
+                    $('#messages').append($('<li>').text('Test: ' + JSON.stringify(data)));
+                    scrollToBottom();
+                });
+
+                socket.on('notification', (data) => {
+                    $('#messages').append($('<li>').text('Notification: ' + JSON.stringify(
+                        data)));
+                    scrollToBottom();
+                });
+
+                socket.on('jobUpdate', (data) => {
+                    $('#messages').append($('<li>').text('JobUpdate: ' + JSON.stringify(data)));
+                    scrollToBottom();
+                });
+
+                socket.on('jobRequestUpdate', (data) => {
+                    $('#messages').append($('<li>').text('JobRequestUpdate: ' + JSON.stringify(
+                        data)));
+                    scrollToBottom();
+                });
+
+                socket.on('requestUpdate', (data) => {
+                    $('#messages').append($('<li>').text('JobRequestUpdate: ' + JSON.stringify(
+                        data)));
+                    scrollToBottom();
+                });
+
+                socket.on('helpMessageUpdate', (data) => {
+                    $('#messages').append($('<li>').text('helpMessageUpdate: ' + JSON.stringify(
+                        data)));
+                    scrollToBottom();
+                });
+
+                socket.on('userUpdate', (data) => {
+                    $('#messages').append($('<li>').text('userUpdate: ' + JSON.stringify(
+                        data)));
+                    scrollToBottom();
+                });
+
+                return false;
+            });
+            $('#disconnect-btn').click(function () {
+                if (socket) {
+                    socket.disconnect()
+                } else {
+                    alert('You still didnt connect to socket')
+                }
+
+            });
+
+            $('#send-btn').click(function () {
+                if (socket) {
+                    let data = JSON.parse($('#message').val());
+                    socket.emit('gamePlay', data, (resData) => {
+                        $('#messages').append($('<li>').text(
+                            `[Response from ${data.type}]: ${JSON.stringify(resData)}`));
+                        scrollToBottom();
+                    });
+                }
+            });
+
+            return false
+
+        });
+
+        function scrollToBottom() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function hideMessageField() {
+            $('#message').hide();
+            $('#send-btn').hide();
+        }
+
+        function showMessageField() {
+            $('#message').show();
+            $('#send-btn').show();
+        }
+    </script>
+</body>
+
+</html>

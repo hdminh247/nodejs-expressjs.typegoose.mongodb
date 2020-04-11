@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <style type="text/css">
+        .background {
+            width: 1197px;
+            background: white;
+        }
+
+        .background-content {
+            margin-top: -30px;
+            margin-left: 19px;
+            width: 1109px;
+            min-height: 634px;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 1px 7px 0 rgba(58, 73, 86, 0.11);
+            border: solid 1px #ebebed;
+            background-color: white;
+            position: absolute;
+        }
+
+        .content {
+            z-index: 1;
+            padding: 60px;
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.75;
+            letter-spacing: normal;
+            color: black;
+            position: relative;
+        }
+
+        .content-header {
+            z-index: 1;
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.75;
+            letter-spacing: normal;
+            color: black;
+            position: relative;
+        }
+
+        .content-body {
+            margin-top: 48px;
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.75;
+            letter-spacing: normal;
+            color: black;
+        }
+
+        .content-body a {
+            color: #4160ff;
+        }
+
+        .group-4 {
+            z-index: 2;
+            background: url("{{ basePath }}images/group-4.png");
+            width: 90px;
+            height: 37px;
+            object-fit: contain;
+            position: relative;
+        }
+
+        .title {
+            padding: 6px 14px 16px 14px;
+            color: white;
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 136px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .content-right {
+            float: right;
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: 0.62px;
+            text-align: right;
+        }
+
+        .content-right>div {
+            display: inline-block;
+        }
+
+        .contact {
+            color: black;
+        }
+
+        .address {
+            margin-left: 30px;
+            color: #4a4a4a;
+        }
+
+        .content-footer {
+            margin-top: 70px;
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.71;
+            letter-spacing: normal;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .content-footer a {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="group-4">
+            <div class="title">
+                Welcome
+            </div>
+        </div>
+        <!-- <img src="group-4.png" class="Group-4"> -->
+        <div class="background-content">
+            <div class="content">
+                <div class="content-header">
+                    <div>
+                        <img src='{{basePath}}images/logo.png' class="logo">
+                        <div class="content-right">
+                            <div class="contact">
+                                <strong>Thai Mobility</strong><br>077-216-0682
+                            </div>
+                            <div class="address">
+                                18E Cong Hoa Street<br>HCM City
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <p>Hi {{name}}</p>
+                    <p>You have a message: <br>
+                        {{message}}<br>
+                        from an email address: {{userEmail}}.<br>
+                        Please check it out and respond to them.<br>
+                    </p><br>
+                    <p> Your Sincerely,<br>
+                        <strong> Thai Mobility team </strong></p>
+                </div>
+                <div class="content-footer">
+                    <p>Delivered by Thai Mobility 18E Cong Hoa Street HCM City.</p>
+                    <p>You may <a href="#">UNSUBCRIBE</a> if you prefer not to receive messages like these.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

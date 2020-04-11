@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thai Mobility</title>
+    <style>
+        body {
+            background-color: #70A9D6;
+        }
+
+        .container {
+            color: white;
+            text-align: left;
+            font-size: 30px;
+        }
+
+        .leader-board {
+            background-color: #193CC8;
+            border-radius: 10px;
+            margin: auto;
+            height: 100%;
+        }
+
+        .leader-board .title {
+            color: white;
+            padding-top: 20px;
+            font-size: 80px;
+            text-align: center;
+        }
+
+        .leader-board .team {
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+            height: 80px;
+            padding: 10px 20px 10px 20px;
+        }
+
+        .team-place-0 {
+            background-color: #00B8FF;
+        }
+
+        .team-place-1 {
+            background-color: #FFA200;
+        }
+
+        .team-place-2 {
+            background-color: #00DFB3;
+        }
+
+        .team-place-3 {
+            background-color: #8C00FF;
+        }
+
+        .place {
+            width: 10%;
+            float: left;
+            text-align: left;
+        }
+
+        .name {
+            width: 50%;
+            float: left;
+            text-align: left;
+        }
+
+        .score {
+            width: 40%;
+            float: left;
+            text-align: right;
+        }
+
+        .points {
+            font-size: 40px;
+            padding-right: 10px;
+        }
+
+        .coins {
+            padding-right: 10px;
+        }
+
+        .mask {
+            background-color: black;
+            opacity: 0.3;
+        }
+
+        .height {
+            line-height: 2.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="leader-board">
+            <div class="title">SCORE</div>
+            {{#each data.data}}
+            {{#if this}}
+            <div class="team team-place-{{ @index }}">
+                <div class="place height">{{ place }}</div>
+                <div class="name height">{{ name }}</div>
+                <div class="score">
+                    <div class="points">{{ points }}</div>
+                    <div class="mask coins">Coins {{ coins }}</div>
+                </div>
+            </div>
+            {{else}}
+            <div class="team team-place-{{ @index }}">
+                <div class="place height">---</div>
+                <div class="name height">---</div>
+                <div class="score height">---</div>
+            </div>
+            {{/if}}
+
+            {{/each}}
+        </div>
+    </div>
+</body>
+
+</html>
