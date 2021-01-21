@@ -58,7 +58,7 @@
       "q": "^1.5.1",
       "reflect-metadata": "^0.1.13",
       "request": "^2.88.0",
-      "socket.io": "^2.2.0",
+      "socket.io": "^2.4.0",
       "stripe": "^7.5.0",
       "swagger-jsdoc": "^3.2.8",
       "swagger-ui-express": "^4.0.2",
