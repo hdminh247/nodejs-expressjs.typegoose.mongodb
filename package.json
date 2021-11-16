@@ -15,7 +15,7 @@
       "@types/google__maps": "^0.5.8",
       "agenda": "^2.0.2",
       "agendash": "^1.0.0",
-      "aws-sdk": "^2.437.0",
+      "aws-sdk": "^2.814.0",
       "basic-auth": "^2.0.1",
       "bcryptjs": "^2.4.3",
       "body-parser": "^1.18.3",
