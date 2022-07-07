@@ -37,7 +37,7 @@
       "lodash": "^4.17.11",
       "log4js": "^4.1.0",
       "logrotator": "^1.1.0",
-      "moment": "^2.24.0",
+      "moment": "^2.29.4",
       "moment-timezone": "^0.5.27",
       "mongo-seeding": "^3.1.0",
       "mongodb": "^3.0.8",
