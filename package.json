@@ -33,7 +33,7 @@
       "http": "0.0.0",
       "i18n": "^0.8.3",
       "image-size": "^0.8.3",
-      "jsonwebtoken": "^8.5.1",
+      "jsonwebtoken": "^9.0.0",
       "lodash": "^4.17.11",
       "log4js": "^4.1.0",
       "logrotator": "^1.1.0",
