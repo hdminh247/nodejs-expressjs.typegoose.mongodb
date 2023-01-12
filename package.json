@@ -20,7 +20,7 @@
       "bcryptjs": "^2.4.3",
       "body-parser": "^1.18.3",
       "branch-sdk": "^2.49.1",
-      "class-validator": "^0.9.1",
+      "class-validator": "^0.14.0",
       "cors": "^2.8.5",
       "crypto": "^1.0.1",
       "dotenv": "^7.0.0",
